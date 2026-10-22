@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diretório Pessoal – Matemática | Sandro Curió</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      line-height: 1.5;
+      padding: 20px;
+    }
+    .container { max-width: 920px; margin: 0 auto; }
+    header {
+      background: linear-gradient(135deg, #e67e22, #d35400);
+      color: white;
+      padding: 28px 24px;
+      border-radius: 16px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(230, 126, 34, 0.25);
+      text-align: center;
+    }
+    header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+    header p { font-size: 0.95rem; opacity: 0.95; }
+
+    /* Navegação rápida */
+    nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      background: white;
+      color: #e67e22;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border: 2px solid #f0d9b5;
+    }
+    nav a:hover { background: #fff8f0; }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 32px 0 16px;
+      color: #d35400;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title span {
+      background: #e67e22;
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .search-box { margin-bottom: 20px; }
+    .search-box input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      outline: none;
+    }
+    .search-box input:focus { border-color: #e67e22; }
+
+    .topics { display: grid; gap: 12px; }
+    .topic {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+      border-left: 5px solid #e67e22;
+    }
+    .topic:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .topic-name { font-size: 1.05rem; font-weight: 600; color: #222; }
+    .topic a {
+      background: #e67e22;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .topic a:hover { background: #d35400; }
+
+    /* Ferramentas */
+    .tools {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .tool {
+      background: white;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border-left: 5px solid #27ae60;
+    }
+    .tool h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+    .tool p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    .tool a {
+      display: inline-block;
+      background: #27ae60;
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-right: 8px;
+      margin-bottom: 6px;
+    }
+    .tool a:hover { background: #219150; }
+
+    /* Cronograma */
+    .cronograma {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .cronograma table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .cronograma th, .cronograma td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    .cronograma th {
+      background: #fff8f0;
+      color: #d35400;
+      font-weight: 600;
+    }
+    .cronograma tr:last-child td { border-bottom: none; }
+    .check {
+      width: 18px;
+      height: 18px;
+      accent-color: #27ae60;
+    }
+
+    .note {
+      margin-top: 36px;
+      padding: 16px;
+      background: #fff8f0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #555;
+      border: 1px solid #f0d9b5;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .topic { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .topic a { width: 100%; text-align: center; }
+      nav { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>O que você vai estudar</h1>
+      <p>Diretório pessoal • Vídeos gratuitos do Sandro Curió</p>
+    </header>
+
+    <nav>
+      <a href="#ferramentas">Ferramentas</a>
+      <a href="#topicos">Tópicos</a>
+      <a href="#cronograma">Cronograma</a>
+    </nav>
+
+    <!-- ==================== FERRAMENTAS ==================== -->
+    <h2 class="section-title" id="ferramentas"><span>1</span> Ferramentas do Método Curió</h2>
+    <div class="tools">
+
+      <div class="tool">
+        <h3>Matemática do Básico ao Avançado</h3>
+        <p>A lista de tópicos abaixo já está na ordem de importância da ementa (do mais básico ao mais avançado). Use-a como caminho principal.</p>
+        <a href="#topicos">Ir para os tópicos</a>
+      </div>
+
+      <div class="tool">
+        <h3>Simulados por módulo / Revisão</h3>
+        <p>Lives e comentários de simulado gratuitos do canal (excelente para treinar por bloco de assuntos).</p>
+        <a href="https://www.youtube.com/watch?v=0FV_nL-E6S0" target="_blank">Revisa ENEM 2025 (comentário de simulado)</a>
+        <a href="https://www.youtube.com/watch?v=p5DAerWRc6M" target="_blank">Revisão Matemática ENEM</a>
+      </div>
+
+      <div class="tool">
+        <h3>Aprenda a interpretar questões</h3>
+        <p>Vídeos específicos do Curió ensinando a estratégia de leitura e interpretação de enunciados.</p>
+        <a href="https://www.youtube.com/watch?v=pdjFb4-FV1g" target="_blank">Como interpretar questões de matemática (live completa)</a>
+        <a href="https://www.youtube.com/watch?v=og9UmCdb3r4" target="_blank">Como interpretar questões (versão e-book)</a>
+      </div>
+
+      <div class="tool">
+        <h3>Exercícios resolvidos em vídeo</h3>
+        <p>Playlist oficial de exercícios do Curió + muitas lives de resolução.</p>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkJsOQUnDhsDNAFG8Yi8trCq" target="_blank">Playlist: Exercícios do Curió</a>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkJg9DE-ynBJzff10V-JB8_g" target="_blank">Desafio Curió</a>
+      </div>
+
+      <div class="tool">
+        <h3>Cronograma de estudos</h3>
+        <p>Use o cronograma abaixo (baseado na ordem da ementa). Marque o que já estudou. Ajuste o ritmo conforme sua rotina.</p>
+        <a href="#cronograma">Ver cronograma</a>
+        <a href="https://www.youtube.com/watch?v=jN5tEUMCyug" target="_blank">Conselho para começar a estudar sério</a>
+        <a href="https://www.youtube.com/watch?v=oLwyd14LDPY" target="_blank">O segredo que transformou meus estudos</a>
+      </div>
+
+    </div>
+
+    <!-- ==================== TÓPICOS ==================== -->
+    <h2 class="section-title" id="topicos"><span>2</span> Tópicos da ementa</h2>
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Buscar tópico..." onkeyup="filterTopics()">
+    </div>
+
+    <div class="topics" id="topics">
+      <div class="topic" data-name="matemática básica">
+        <span class="topic-name">Matemática Básica</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkLc31FnLJ_n6H_Jmmd-6TPi" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="conjuntos">
+        <span class="topic-name">Conjuntos</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkIFeRfE4yvrZk9OTpOyFBiF" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="potenciação e radiciação">
+        <span class="topic-name">Potenciação e Radiciação</span>
+        <a href="https://www.youtube.com/watch?v=m-_sIVXNnXU" target="_blank">Ver vídeo</a>
+      </div>
+      <div class="topic" data-name="razões e proporções">
+        <span class="topic-name">Razões e Proporções</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkLVgXqZWrY6LtXVNG1k7j3V" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="porcentagem e juros">
+        <span class="topic-name">Porcentagem e Juros</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkKyefyZbUe3v4XrijpB2ZO_" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="equações">
+        <span class="topic-name">Equações</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkJU6g8Ees6KRzNNxn5U9aeW" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="funções">
+        <span class="topic-name">Funções</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkLBNXfGTZcbreBHjfvvAHw2" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="análise combinatória">
+        <span class="topic-name">Análise Combinatória</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkIW5WUcy15P3NU78v7DXbZk" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="probabilidade">
+        <span class="topic-name">Probabilidade</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkILLMM5ENIWnmBzSZ9q5V3_" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="exponencial logaritmo">
+        <span class="topic-name">Exponencial e Logaritmo</span>
+        <a href="https://www.youtube.com/watch?v=hA9HecU1p9g" target="_blank">Ver vídeo</a>
+      </div>
+      <div class="topic" data-name="progressão aritmética">
+        <span class="topic-name">Progressão Aritmética</span>
+        <a href="https://www.youtube.com/watch?v=BWwQa8c22Pw" target="_blank">Ver vídeo</a>
+      </div>
+      <div class="topic" data-name="progressão geométrica">
+        <span class="topic-name">Progressão Geométrica</span>
+        <a href="https://www.youtube.com/watch?v=haKrC4quHj8" target="_blank">Ver vídeo</a>
+      </div>
+      <div class="topic" data-name="geometria plana">
+        <span class="topic-name">Geometria Plana</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkIDr7zA7ANf6gYoLskmQfJs" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="geometria espacial">
+        <span class="topic-name">Geometria Espacial</span>
+        <a href="https://www.youtube.com/watch?v=sFWBwWg2szE" target="_blank">Ver vídeo</a>
+      </div>
+      <div class="topic" data-name="geometria analítica">
+        <span class="topic-name">Geometria Analítica</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkLE10zBpt3bgE2TrNuOWgff" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="matrizes e determinantes">
+        <span class="topic-name">Matrizes e Determinantes</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkKUkIYwKXyg-_pqHe-27FAZ" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="polinômios">
+        <span class="topic-name">Polinômios</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkJFVwgpvP1ExXcuV3kQp5Vx" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="estatística">
+        <span class="topic-name">Estatística</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkKh72KRZ-tbHnWrMhugfm70" target="_blank">Abrir playlist</a>
+      </div>
+      <div class="topic" data-name="números complexos">
+        <span class="topic-name">Números Complexos</span>
+        <a href="https://www.youtube.com/watch?v=AAXPJpfRwxw" target="_blank">Ver vídeo</a>
+      </div>
+      <div class="topic" data-name="trigonometria">
+        <span class="topic-name">Trigonometria</span>
+        <a href="https://www.youtube.com/playlist?list=PLaKmzX_hXWkKvs5nY4Me4uf9Nr1gxceq1" target="_blank">Abrir playlist</a>
+      </div>
+    </div>
+
+    <!-- ==================== CRONOGRAMA ==================== -->
+    <h2 class="section-title" id="cronograma"><span>3</span> Cronograma de estudos (editável)</h2>
+    <div class="cronograma">
+      <p style="margin-bottom: 14px; color: #555; font-size: 0.95rem;">
+        Marque os tópicos conforme for avançando. Sugestão: 1–2 tópicos por semana + revisão de exercícios.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40px;">✓</th>
+            <th>Semana</th>
+            <th>Tópico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="check"></td><td>1</td><td>Matemática Básica + Conjuntos</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>2</td><td>Potenciação e Radiciação + Razões e Proporções</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>3</td><td>Porcentagem e Juros + Equações</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>4</td><td>Funções</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>5</td><td>Análise Combinatória + Probabilidade</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>6</td><td>Exponencial e Logaritmo</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>7</td><td>Progressão Aritmética + Progressão Geométrica</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>8</td><td>Geometria Plana</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>9</td><td>Geometria Espacial + Geometria Analítica</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>10</td><td>Matrizes e Determinantes + Polinômios</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>11</td><td>Estatística + Números Complexos</td></tr>
+          <tr><td><input type="checkbox" class="check"></td><td>12</td><td>Trigonometria + Revisão geral + Simulados</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 14px; font-size: 0.85rem; color: #888;">
+        Os checkboxes salvam automaticamente no seu navegador (localStorage).
+      </p>
+    </div>
+
+    <div class="note">
+      <strong>Uso pessoal apenas.</strong><br>
+      Todos os links apontam exclusivamente para o canal oficial do Sandro Curió no YouTube.  
+      Conteúdo público e gratuito. Este arquivo é só para o seu estudo.
+    </div>
+
+    <footer>
+      Diretório privado • Sandro Curió • Dicasdemat
+    </footer>
+  </div>
+
+  <script>
+    // Busca de tópicos
+    function filterTopics() {
+      const input = document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('.topic').forEach(topic => {
+        const name = topic.getAttribute('data-name');
+        topic.style.display = name.includes(input) ? 'flex' : 'none';
+      });
+    }
+
+    // Salvar checkboxes do cronograma
+    const checks = document.querySelectorAll('.check');
+    checks.forEach((cb, i) => {
+      const key = 'cronograma_' + i;
+      cb.checked = localStorage.getItem(key) === 'true';
+      cb.addEventListener('change', () => {
+        localStorage.setItem(key, cb.checked);
+      });
+    });
+  </script>
+</body>
+</html>
